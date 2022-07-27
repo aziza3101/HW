@@ -98,30 +98,6 @@ public class UserDaoJdbcImpl implements UserDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        ;
-
     }
 
-    public boolean existsByFirstName(String firstName) {
-        // eger databasede parametrine kelgen firstnamege okshosh adam bar bolso
-        // anda true kaitarsyn
-        // jok bolso anda false kaitarsyn.
-        String query = """
-                select case when count (*) > 0 then true else false end
-                from users 
-                where name = ?
-                   """;
-        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-            preparedStatement.setString(1, firstName);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                return resultSet.getBoolean(1);
-            }
-            resultSet.close();
-            throw new RuntimeException(
-                    "Something went wrong database does not return any value");
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

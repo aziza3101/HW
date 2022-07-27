@@ -87,25 +87,7 @@ public class UserDaoHibernateImpl implements UserDao, AutoCloseable {
         entityManager.getTransaction().commit();
 
         entityManager.close();
-
     }
-
-    @Override
-    public boolean existsByFirstName(String firstName) {
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-        entityManager.getTransaction().begin();
-        Query query = entityManager.createQuery("select case when count(u) > 0 " +
-                "then true " +
-                "else false end " +
-                "from User u where u.name = ?1", Boolean.class);
-        query.setParameter(1, firstName);
-        Boolean singleResult = (Boolean) query.getSingleResult();
-        entityManager.getTransaction().commit();
-        entityManager.close();
-        return singleResult;
-    }
-
-
     @Override
     public void close() throws Exception {
         entityManagerFactory.close();

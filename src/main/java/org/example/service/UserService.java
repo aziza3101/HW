@@ -17,6 +17,5 @@ public interface UserService {
 
     void cleanUsersTable();
 
-    boolean existsByFirstName(String firstName);
 }
 

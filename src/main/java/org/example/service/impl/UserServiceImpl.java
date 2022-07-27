@@ -1,9 +1,10 @@
-package org.example.service;
+package org.example.service.impl;
 
 
 import org.example.dao.UserDao;
 import org.example.dao.UserDaoJdbcImpl;
 import org.example.model.User;
+import org.example.service.UserService;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -18,7 +19,6 @@ public class UserServiceImpl implements UserService {
 
     public void createUsersTable() {
         userDaoJdbc.createUsersTable();
-
 
     }
 
@@ -39,16 +39,8 @@ public class UserServiceImpl implements UserService {
         return userDaoJdbc.getAllUsers();
 
     }
-
     public void cleanUsersTable() {
         userDaoJdbc.cleanUsersTable();
     }
 
-    public boolean existsByFirstName(String firstName) {
-        // eger databasede parametrine kelgen firstnamege okshosh adam bar bolso
-        // anda true kaitarsyn
-        // jok bolso anda false kaitarsyn.
-        return userDaoJdbc.existsByFirstName(firstName);
-
-    }
 }
